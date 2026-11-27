@@ -1,0 +1,11 @@
+{
+  "kind": "git-tag",
+  "upstream": "https://github.com/docling-project/docling-serve.git",
+  "tag_regex": "^v[0-9]+\\.[0-9]+\\.[0-9]+$",
+  "tag_prefix": "v",
+  "version_file": "flake.nix",
+  "version_grep": "version = \"[0-9]+\\.[0-9]+\\.[0-9]+\"",
+  "pinned_paths": [],
+  "pinned_flake_regex": "docling-serve-src|revision =",
+  "sync_script": "bash scripts/sync-from-git-tag.sh"
+}

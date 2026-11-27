@@ -1,6 +1,21 @@
 {
   description = "Docling Serve OCI image built with Nix dockerTools";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://rogernavelsaker.cachix.org"
+      "https://nacosolutions.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "rogernavelsaker.cachix.org-1:n1DtzMNhA9Rz4Kg3xlXOi/KceULu8VrMbs9WXyMFQNQ="
+      "nacosolutions.cachix.org-1:JzCiW2CLcuLXtwOVAg3SlSK/kpqWbfSFEVenyKVUlug="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/02c087f3fe673c9e317f206a627cb6b910336dbe";
 
@@ -23,7 +38,7 @@
     };
 
     docling-serve-src = {
-      url = "github:docling-project/docling-serve/7eebd99b990113e1e3d67cba5ad59531ee07ed3c";
+      url = "github:docling-project/docling-serve/5c101b6c67cd57e662e9abfebee7d2a6fc2b0cb4";
       flake = false;
     };
   };
@@ -41,8 +56,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
-      version = "1.38.0";
-      revision = "7eebd99b990113e1e3d67cba5ad59531ee07ed3c";
+      version = "1.40.0";
+      revision = "5c101b6c67cd57e662e9abfebee7d2a6fc2b0cb4";
       python = pkgs.python313;
 
       workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = docling-serve-src; };
@@ -86,7 +101,7 @@
 import importlib.metadata as metadata
 import importlib.util
 
-assert metadata.version("docling-serve") == "1.38.0"
+assert metadata.version("docling-serve") == "1.40.0"
 for name in ("docling_core", "docling_jobkit", "docling", "docling_serve", "torch", "torchvision"):
     assert importlib.util.find_spec(name), name
 assert importlib.util.find_spec("saxonche") is None
